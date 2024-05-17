@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.fa-opacity-hover {
+  opacity: 1;
+}
+
+.fa-opacity-hover:hover {
+  font-size: 18px;
+  /* opacity: 0.8; */
+}
+
