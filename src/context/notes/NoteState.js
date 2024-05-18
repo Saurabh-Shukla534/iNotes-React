@@ -6,6 +6,8 @@ const NoteState = (props) => {
     const initialNotes = [];
 
     const [notes, setNotes] = useState(initialNotes);
+    // set alert text
+    const [alert, setAlert] = useState({text: "", type: "secondary"});
 
     const getNotes = async() => {
         const response = await fetch(`${host}/api/note/fetchAllNotes`, {
@@ -30,11 +32,24 @@ const NoteState = (props) => {
         });
         const json = await response.json(); // parses JSON response into native JavaScript objects
         console.log(json);
-
-        setNotes(notes.concat(note));
+        if(!json.errors) {
+            // setNotes(notes.concat(note));
+            getNotes();
+        } else {
+            setAlert({text: json.errors[0].msg, type: "danger"});
+        }
     }
 
-    const deleteNote = (id) => {
+    const deleteNote = async(id) => {
+        const response = await fetch(`${host}/api/note/deleteNote/${id}`, {
+            method: "DELETE",
+            headers: {
+              "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0MGQ5NGY2ZWJlODkxMDBlNzY4NDZiIn0sImlhdCI6MTcxNTY3MzE0OH0.bg8PrKx5UKSYa91WwHXgpUMZgtoOJBhQqIcMGkxGE1s"
+            }
+        });
+        const json = await response.json(); // parses JSON response into native JavaScript objects
+        console.log(json);
+
         const newNotes = notes.filter((note) => note._id !== id);
         setNotes(newNotes);
     }
@@ -62,7 +77,7 @@ const NoteState = (props) => {
     }
       
     return (
-        <NoteContext.Provider value={{notes, setNotes, getNotes, addNote, deleteNote, editNote}}>
+        <NoteContext.Provider value={{notes, setNotes, getNotes, addNote, deleteNote, editNote, alert}}>
             {props.children}
         </NoteContext.Provider>
     )

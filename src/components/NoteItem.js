@@ -20,7 +20,10 @@ const NoteItem = (props) => {
             <div className="card my-3" style={{width: "18rem"}}>
                 <div className="card-body">
                     <div className="d-flex align-items-baseline justify-content-between">
-                        <h5 className="card-title">{note.title}</h5>
+                        <div className='d-flex'>
+                            <h5 className="card-title">{note.title}</h5>
+                            <pre> ({note.tag})</pre>
+                        </div>
                         <div>
                             <i className="fa-solid fa-trash-can mx-2 fa-opacity-hover" role='button' onClick={handleDelete}></i>
                             <i className="fa-solid fa-pen-to-square mx-2 fa-opacity-hover" role='button' onClick={handleEdit}></i>
