@@ -1,20 +1,25 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import NoteContext from '../context/notes/NoteContext';
 
 const Alert = () => {
   const [alertObj, setAlertObj] = useState({});
   const context = useContext(NoteContext);
-  const {alert} = context;
+  const { alert } = context;
 
-    setTimeout(() => {
-      setAlertObj(alert);
-  }, 500);
+  useEffect(() => {
+    setAlertObj(alert);
+  }, [alert])
+  
+  
+  setTimeout(() => {
+    setAlertObj({});
+  }, 3000);
 
   return (
-    alertObj.text && <div>
-      <div className={`alert alert-${alertObj.type}`} role="alert">
+    <div style={{height: '50px'}}>
+      {alertObj.text && <div className={`alert alert-${alertObj.type} alert-dismissible fade show`} role="alert">
         {alertObj.text}
-      </div>
+      </div>}
     </div>
   )
 }

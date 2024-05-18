@@ -7,6 +7,7 @@ const Notes = () => {
     const {notes, getNotes} = context;
     useEffect(() => {
       getNotes();
+    //   eslint-disable-next-line
     }, [])
     
   
@@ -14,7 +15,7 @@ const Notes = () => {
         <div className='row'>
             <h1>Your added note</h1>
             {notes.map((note) => {
-            return <NoteItem note={note} key={note._id}/>
+                return <NoteItem note={note} key={note._id}/>
             })}
         </div>
     )

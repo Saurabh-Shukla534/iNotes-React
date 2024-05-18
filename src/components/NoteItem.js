@@ -1,18 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import NoteContext from '../context/notes/NoteContext';
 import '../App.css';
+import EditItem from './EditItem';
 
 const NoteItem = (props) => {
     const context = useContext(NoteContext);
-    const {deleteNote, editNote} = context;
+    const {deleteNote} = context;
     const {note} = props;
+    const [editItem, setEditItem] = useState(false);
 
     const handleDelete = () => {
         deleteNote(note._id);
     }
 
     const handleEdit = () => {
-        editNote(note);
+        setEditItem(true);
     }
 
     return (
@@ -27,6 +29,7 @@ const NoteItem = (props) => {
                         <div>
                             <i className="fa-solid fa-trash-can mx-2 fa-opacity-hover" role='button' onClick={handleDelete}></i>
                             <i className="fa-solid fa-pen-to-square mx-2 fa-opacity-hover" role='button' onClick={handleEdit}></i>
+                            {editItem &&<EditItem setEditItem={setEditItem} note={note}/>}
                         </div>
                     </div>
                     <p className="card-text">{note.description}</p>
