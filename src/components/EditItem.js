@@ -58,7 +58,7 @@ const EditItem = (props) => {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeModal}>Close</button>
-                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={updateClick}>Update Note</button>
+                            <button disabled={noteItem.title.length <= 3 || noteItem.description.length <= 10} type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={updateClick}>Update Note</button>
                         </div>
                     </div>
                 </div>

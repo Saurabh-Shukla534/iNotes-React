@@ -14,6 +14,7 @@ const Notes = () => {
     return (
         <div className='row'>
             <h1>Your added note</h1>
+            <div>{notes.length === 0 ? "Please add notes to preview." : ""}</div>
             {notes.map((note) => {
                 return <NoteItem note={note} key={note._id}/>
             })}
