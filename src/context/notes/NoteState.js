@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import NoteContext from './NoteContext';
+import AlertContext from '../alerts/AlertContext';
 
 const NoteState = (props) => {
     const host = "http://localhost:5000";
@@ -7,7 +8,8 @@ const NoteState = (props) => {
 
     const [notes, setNotes] = useState(initialNotes);
     // set alert text
-    const [alert, setAlert] = useState({text: "", type: "secondary"});
+    const context = useContext(AlertContext);
+    const {setAlert} = context;
 
     const getNotes = async() => {
         const response = await fetch(`${host}/api/note/fetchAllNotes`, {
@@ -94,7 +96,7 @@ const NoteState = (props) => {
     }
       
     return (
-        <NoteContext.Provider value={{notes, setNotes, getNotes, addNote, deleteNote, editNote, alert}}>
+        <NoteContext.Provider value={{notes, setNotes, getNotes, addNote, deleteNote, editNote}}>
             {props.children}
         </NoteContext.Provider>
     )

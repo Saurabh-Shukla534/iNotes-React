@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import NoteContext from '../context/notes/NoteContext';
+import AlertContext from '../context/alerts/AlertContext';
 
 const Alert = () => {
   const [alertObj, setAlertObj] = useState({});
-  const context = useContext(NoteContext);
+  const context = useContext(AlertContext);
   const { alert } = context;
 
   useEffect(() => {
