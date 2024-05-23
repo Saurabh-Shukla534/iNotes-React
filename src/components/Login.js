@@ -20,7 +20,7 @@ const Login = () => {
         });
         const json = await response.json(); // parses JSON response into native JavaScript objects
         if(!json.error) {
-            localStorage.setItem('token', json.authtoken);
+            localStorage.setItem('token', json.authToken);
             setAlert({text: "Logged in successfully", type: "success"});
             navigate("/");
         } else {
@@ -34,6 +34,7 @@ const Login = () => {
 
     return (
         <div className='container mt-2'>
+            <h2 className='mb-3'>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>

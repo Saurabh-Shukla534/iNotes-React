@@ -24,7 +24,7 @@ const Signup = () => {
     });
     const json = await response.json(); // parses JSON response into native JavaScript objects
     if(!json.error) {
-        localStorage.setItem('token', json.authtoken);
+        localStorage.setItem('token', json.authToken);
         setAlert({text: "User created successfully", type: "success"});
         navigate("/");
     } else {
@@ -38,6 +38,7 @@ const Signup = () => {
 
   return (
     <div className='container mt-2'>
+      <h2 className='mb-3'>Sign up</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Name</label>
@@ -53,7 +54,7 @@ const Signup = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="cPassword" className="form-label">Confirm Password</label>
-          <input type="password" className="form-control" id="cPassword" name='cpassword' onChange={onChange} />
+          <input type="password" className="form-control" id="cPassword" name='cPassword' onChange={onChange} />
         </div>
         <button type="submit" className="btn btn-primary">Sign up</button>
       </form>
